@@ -33,10 +33,13 @@ var ticTacToe = function () {
             this.board[row][col] = this.currentPlayer;
             this.updateDom(data, row, col);
             this.checkWinnerPattern(row, col, this.currentPlayer);
-            this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+            this.nextplayer(this.currentPlayer);
             // Check row pattern
         }
     };
+    this.nextplayer = function (player) {
+        this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+    }
     this.updateDom = function (data, row, col) {
         data.innerHTML = this.board[row][col];
         //data.innerText = this.board[row][col];
