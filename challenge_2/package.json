@@ -1,0 +1,31 @@
+{
+  "name": "challenge_2",
+  "version": "1.0.0",
+  "description": "Mini App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Priyadubal18/rpt13-mini-apps-1.git"
+  },
+  "keywords": [
+    "mini-app",
+    "challenge2"
+  ],
+  "author": "Priya Dubal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Priyadubal18/rpt13-mini-apps-1/issues"
+  },
+  "homepage": "https://github.com/Priyadubal18/rpt13-mini-apps-1#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
