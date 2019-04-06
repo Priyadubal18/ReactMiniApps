@@ -2,7 +2,7 @@
 
 <head></head>
 
-<body>
+<body id="csvReport">
     <h1>CSV Report Generator</h1>
 
     <form id="jsonForm" method="POST" action="/upload_json" onsubmit="sendJsonData(event)">
@@ -11,7 +11,7 @@
         <input type="submit" value="SUBMIT" style="display:block;margin-top:10px;" />
     </form>
 
-    <div id="csvReport"><%=test %></div> <!-- Just checking partial views-->
+    <div><%=test %></div> <!-- Just checking partial views-->
     <!-- <% include partials/test %>  -->
 </body>
 <% include partials/scripts %>
