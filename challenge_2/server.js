@@ -1,10 +1,18 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+// let multer = require('multer');
+// let upload = multer();
+const bodyParser = require('body-parser');
 
 //app.use(express.static('client'));
-app.use(express.json());
-app.use(express.urlencoded())
+//app.use(upload.array());
+//app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+//app.use(express.urlencoded())
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
 
@@ -14,14 +22,15 @@ app.get('/', function (req, res) {
 });
 
 app.post('/upload_json', function (req, res) {
+    console.log(req.body);
     let inputdata = JSON.parse(req.body.message);
     let result = pasrJson(inputdata);
     console.log(result);
     //result = result.replace(/\n/g, "<br />");
-    res.render('index', {
-        'test': result
-    });
-    //res.send(result);
+    //     res.render('index', {
+    //     'test': result
+    // });
+    res.send(result);
 });
 
 function pasrJson(data) {
