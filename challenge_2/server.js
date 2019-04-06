@@ -2,16 +2,26 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.use(express.static('client'));
+//app.use(express.static('client'));
 app.use(express.json());
 app.use(express.urlencoded())
+app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
+
+app.get('/', function (req, res) {
+    res.render('index', { test: '' });
+    // res.send();
+});
 
 app.post('/upload_json', function (req, res) {
     let inputdata = JSON.parse(req.body.message);
     let result = pasrJson(inputdata);
     console.log(result);
-    res.send(result);
+    //result = result.replace(/\n/g, "<br />");
+    res.render('index', {
+        'test': result
+    });
+    //res.send(result);
 });
 
 function pasrJson(data) {
