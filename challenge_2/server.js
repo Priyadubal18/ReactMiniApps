@@ -22,15 +22,17 @@ app.get('/', function (req, res) {
 });
 
 app.post('/upload_json', function (req, res) {
-    console.log(req.body);
+    console.log(typeof req.body.message);
     let inputdata = JSON.parse(req.body.message);
     let result = pasrJson(inputdata);
     console.log(result);
     //result = result.replace(/\n/g, "<br />");
     //     res.render('index', {
     //     'test': result
-    // });
+    // });   
     res.send(result);
+
+    res.send();
 });
 
 function pasrJson(data) {
