@@ -2,16 +2,17 @@
 
 <head></head>
 
-<body id="csvReport">
+<body>
     <h1>CSV Report Generator</h1>
 
     <form id="jsonForm" method="POST" action="/upload_json" onsubmit="sendJsonData(event)">
         <p>Please enter the JSON Object</p>
-        <textarea name="message" rows="5" cols="50"></textarea>
+        <input type="file" id="jsonfile" name="jsonFilename">
+        <!-- <textarea name="message" rows="5" cols="50"></textarea> -->
         <input type="submit" value="SUBMIT" style="display:block;margin-top:10px;" />
     </form>
 
-    <div><%=test %></div> <!-- Just checking partial views-->
+    <div id="csvReport"><%=test %></div> <!-- Just checking partial views-->
     <!-- <% include partials/test %>  -->
 </body>
 <% include partials/scripts %>

@@ -2,15 +2,21 @@
 <script>
     function sendJsonData(e) {
         debugger;
-        let $form = $('#jsonForm');
-        console.log($('form').serialize());
+        // let $form = $('#jsonForm');
+        // console.log($('form').serialize());      
+        var files = $('#jsonfile').get(0).files;
+        let formData = new FormData();
+        formData.append("jsonFilename", files[0], files[0].name);
         e.preventDefault();
         $.ajax({
             method: 'POST',
             url: '/upload_json',
-            data: $('form').serialize(),
+            data: formData,
+            processData: false,
+            contentType: false,
+            //data: $('form').serialize(),
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 $("#csvReport").html(data);
             }
         })

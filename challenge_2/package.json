@@ -23,7 +23,8 @@
   "homepage": "https://github.com/Priyadubal18/rpt13-mini-apps-1#readme",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

@@ -4,12 +4,14 @@ const port = 3000;
 // let multer = require('multer');
 // let upload = multer();
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 //app.use(express.static('client'));
 //app.use(upload.array());
 //app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 
 
 //app.use(express.urlencoded())
@@ -22,16 +24,17 @@ app.get('/', function (req, res) {
 });
 
 app.post('/upload_json', function (req, res) {
-
-    let inputdata = JSON.parse(req.body.message);
+    //console.log(req);
+    console.log();
+    //let inputdata = JSON.parse(req.body.message);
+    let inputdata = JSON.parse(req.files.jsonFilename.data.toString());
     let result = pasrJson(inputdata);
-    // console.log(result);
-    // result = result.replace(/\n/g, "<br />");
-    res.render('index', {
-        'test': result
-    });
-    //res.send(result);
-
+    console.log(result);
+    result = result.replace(/\n/g, "<br />");
+    // res.render('index', {
+    //     'test': result
+    // });
+    res.send(result);
     //res.send();
 });
 
