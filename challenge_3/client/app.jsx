@@ -32,22 +32,30 @@ class F1 extends React.Component {
         super(props);
         this.state = {
             isForm2: false,
-            userName: ''
+            userId: ''
         }
 
         this.nextForm1 = this.nextForm1.bind(this);
-        this.handleUserChange = this.handleUserChange.bind(this)
+
     }
 
-    nextForm1() {
-        this.setState({
-            isForm2: true
+    nextForm1(e) {
+        let rm = this;
+        e.preventDefault();
+        $.ajax({
+            method: 'POST',
+            url: '/upload_user',
+            data: $("#userForm").serialize(),
+            success: function (data) {
+                debugger;
+                console.log("posted user info", data);
+                rm.setState({
+                    userId: data,
+                    isForm2: true
+                });
+            }
         });
-    }
-    handleUserChange(e) {
-        this.setState({
-            userName: e.target.value
-        });
+
     }
 
     render() {
@@ -55,20 +63,22 @@ class F1 extends React.Component {
             <div>
                 {this.state.isForm2 ? null :
                     <div>
-                        <h3>User Info Form</h3>
-                        <label>Name: </label>
-                        <input type="text" name="name" id="username" onChange={this.handleUserChange} />
-                        <br /> <br />
-                        <label>Email: </label>
-                        <input type="email" id="useremail" />
-                        <br /> <br />
-                        <label>Password: </label>
-                        <input type="password" id="userpassword" />
-                        <br /> <br />
-                        <input type="submit" value="Next" onClick={this.nextForm1} />
+                        <form id="userForm" onSubmit={this.nextForm1}>
+                            <h3>User Info TT Form</h3>
+                            <label>Name: </label>
+                            <input type="text" name="username" id="username" />
+                            <br /> <br />
+                            <label>Email: </label>
+                            <input type="email" name="useremail" id="useremail" />
+                            <br /> <br />
+                            <label>Password: </label>
+                            <input type="password" name="userpassword" id="userpassword" />
+                            <br /> <br />
+                            <button>Next</button>
+                        </form>
                     </div>
                 }
-                {this.state.isForm2 ? <F2 /> : null}
+                {this.state.isForm2 ? <F2 userId={this.state.userId} /> : null}
             </div >
         )
     }
@@ -77,9 +87,11 @@ class F1 extends React.Component {
 
 class F2 extends React.Component {
     constructor(props) {
+        debugger;
         super(props);
         this.state = {
-            isForm3: false
+            isForm3: false,
+            userId: props.userId
         }
         this.nextForm2 = this.nextForm2.bind(this);
     }
@@ -117,7 +129,7 @@ class F2 extends React.Component {
                             <input type="submit" value="Next" onClick={this.nextForm2} />
                         </div>
                 }
-                {this.state.isForm3 ? <F3 /> : null}
+                {this.state.isForm3 ? <F3 userId={userId} /> : null}
             </div>
         )
     }
@@ -128,7 +140,8 @@ class F3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isForm4: false
+            isForm4: false,
+            userId: props.userId
         }
         this.nextForm3 = this.nextForm3.bind(this);
     }
