@@ -16,3 +16,17 @@ app.post('/upload_user', function (req, res) {
         res.send(`${data}`);
     });
 });
+
+app.post('/upload_addr', function (req, res) {
+    console.log((req.body));
+    dbmethods.messages.postAddr(req.body, function (data) {
+        res.send("Added user address");
+    });
+});
+
+app.post('/upload_creditcard', function (req, res) {
+    console.log((req.body));
+    dbmethods.messages.postCC(req.body, function (data) {
+        res.send("Added user cc");
+    });
+});

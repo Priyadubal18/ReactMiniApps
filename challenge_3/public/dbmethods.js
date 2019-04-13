@@ -15,6 +15,25 @@ module.exports = {
                     cb(results[0].UserID);
                 });
             });
-        }
+        },
+        postAddr: function (data, cb) {
+            let queryString = `INSERT into UserAddress(ShipAddress1, ShipAddress2, City, State, Zip, Phone, UserId) values('${data.shipAddr1}', '${data.shipAddr2}', '${data.city}', '${data.state}', '${data.zip}','${data.telNo}', '${data.userID}' )`;
+            console.log(queryString);
+            var queryArgs = [];
+            db.dbConnection.query(queryString, queryArgs, function (error, results) {
+                if (error) { throw error; }
+                cb();
+            });
+        },
+        postCC: function (data, cb) {
+            let queryString = `	INSERT into UserCreditCard(CreditCard, ExpMonth, ExpYear, cvv, UserId) values('${data.cardnumber}', '${data.expmonth}', '${data.expyear}', '${data.cvv}', '${data.userID}')`;
+            console.log(queryString);
+            var queryArgs = [];
+            db.dbConnection.query(queryString, queryArgs, function (error, results) {
+                if (error) { throw error; }
+                cb();
+            });
+        },
+
     }
 }
