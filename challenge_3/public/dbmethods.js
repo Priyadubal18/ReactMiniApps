@@ -34,6 +34,22 @@ module.exports = {
                 cb();
             });
         },
+        getUserInfo: function (data, cb) {
+
+            let queryString = `	select UserName, UserEmail, Password , ShipAddress1, ShipAddress2, City, State, Zip, Phone, CreditCard, ExpMonth, ExpYear, cvv
+            from User as U join
+            UserAddress as B on U.UserId = B.UserId
+            inner join UserCreditCard as C
+            on U.UserId = C.UserId
+            where U.UserId ='${data}'`;
+            console.log(queryString);
+            var queryArgs = [];
+            db.dbConnection.query(queryString, queryArgs, function (error, results) {
+                console.log(results);
+                if (error) { throw error; }
+                cb(results[0]);
+            });
+        },
 
     }
 }

@@ -164,7 +164,9 @@ class F3 extends React.Component {
             userId: props.userId
         }
         this.nextForm3 = this.nextForm3.bind(this);
+
     }
+
     nextForm3(e) {
         let rm = this;
         e.preventDefault();
@@ -208,7 +210,88 @@ class F3 extends React.Component {
                             </form>
                         </div>
                 }
-                {this.state.isForm4 ? <App /> : null}
+                {this.state.isForm4 ? <Checkout userId={this.state.userId} /> : null}
+            </div>
+        )
+    }
+}
+
+
+class Checkout extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isForm5: true,
+            isForm6: false,
+            userId: props.userId,
+            userInfo: {}
+        }
+        this.Redirect = this.Redirect.bind(this);
+        //this.nextForm4 = this.nextForm4.bind(this);
+    }
+    componentDidMount() {
+        debugger;
+        let rm = this;
+        $.ajax({
+            method: 'get',
+            url: '/get_userInfo',
+            data: rm.state.userId,
+            success: function (data) {
+                debugger;
+                console.log("get user info", data);
+                rm.setState({
+                    isForm5: false,
+                    userInfo: data
+                });
+            }
+        });
+    }
+    Redirect() {
+        debugger;
+        this.setState({
+            isForm6: true,
+            isForm5: true
+        })
+    }
+    render() {
+        return (
+            <div>
+                {
+                    this.state.isForm5 ? null :
+                        <div>
+                            <h3>User Info:</h3>
+                            <label>UserName :  {this.state.userInfo.UserName}</label>
+                            <br /> <br />
+                            <label>UserEmail :  {this.state.userInfo.UserEmail}</label>
+                            <br /> <br />
+                            <label>UserPassword :  {this.state.userInfo.Password}</label>
+                            <br /> <br />
+                            <h3>User Info Ship Address:</h3>
+                            <label>ShipAddress1 :  {this.state.userInfo.ShipAddress1}</label>
+                            <br /> <br />
+                            <label>ShipAddress2 :  {this.state.userInfo.ShipAddress2}</label>
+                            <br /> <br />
+                            <label>City :  {this.state.userInfo.City}</label>
+                            <br /> <br />
+                            <label>State :  {this.state.userInfo.State}</label>
+                            <br /> <br />
+                            <label>Zip :  {this.state.userInfo.Zip}</label>
+                            <br /> <br />
+                            <label>Phone :  {this.state.userInfo.Phone}</label>
+                            <br /> <br />
+                            <h3>User Info Credit Address:</h3>
+                            <label>CreditCard :  {this.state.userInfo.CreditCard}</label>
+                            <br /> <br />
+                            <label>ExpMonth :  {this.state.userInfo.ExpMonth}</label>
+                            <br /> <br />
+                            <label>ExpYear :  {this.state.userInfo.ExpYear}</label>
+                            <br /> <br />
+                            <label>cvv :  {this.state.userInfo.cvv}</label>
+                            <br /> <br />
+                            <button onClick={this.Redirect}>Purchase </button>
+                        </div>
+                }
+                {this.state.isForm6 ? <App /> : null}
             </div>
         )
     }

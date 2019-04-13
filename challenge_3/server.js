@@ -30,3 +30,12 @@ app.post('/upload_creditcard', function (req, res) {
         res.send("Added user cc");
     });
 });
+
+app.get('/get_userInfo', function (req, res) {
+    console.log("in get");
+    let userId = Object.keys(req.query)[0];
+    console.log(userId);
+    dbmethods.messages.getUserInfo(userId, function (data) {
+        res.send(data);
+    });
+});
