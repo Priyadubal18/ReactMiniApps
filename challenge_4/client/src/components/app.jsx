@@ -26,24 +26,6 @@ class App extends React.Component {
         }
         this.playgame = this.playgame.bind(this);
     }
-
-    // initBoard() {
-    //     let board = [];
-    //     for (var row = 0; row < 6; row++) {
-    //         let row = [];
-    //         for (var col = 0; col < 7; col++) {
-    //             row.push(null);
-    //         }
-    //         board.push(row)
-    //     }
-
-    //     this.setState({
-    //         board: board,
-    //         currentplayer: this.state.player1,
-    //         gameOver: false,
-    //         message: ''
-    //     });
-    // }// 
     togglePlayer() {
         debugger;
         return (this.state.currentplayer === this.state.player1) ? this.state.player2 : this.state.player1;
