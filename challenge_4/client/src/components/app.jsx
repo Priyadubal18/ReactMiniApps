@@ -46,7 +46,7 @@ class App extends React.Component {
     // }// 
     togglePlayer() {
         debugger;
-        return (this.state.currentPlayer === this.state.player1) ? this.state.player2 : this.state.player1;
+        return (this.state.currentplayer === this.state.player1) ? this.state.player2 : this.state.player1;
     }
     playgame(col) {
         debugger;
@@ -54,6 +54,7 @@ class App extends React.Component {
             let newboard = this.state.board;
             for (let row = 5; row >= 0; row--) {
                 if (!newboard[row][col]) {
+                    debugger;
                     newboard[row][col] = this.state.currentplayer;
                     break;
                 }
@@ -64,13 +65,13 @@ class App extends React.Component {
                 this.setState({
                     board: newboard,
                     gameOver: true,
-                    message: 'Player 1 (red) wins!'
+                    message: 'Player 1  wins!'
                 });
             } else if (gameresult === this.state.player2) {
                 this.setState({
                     board: newboard,
                     gameOver: true,
-                    message: 'Player 2 (yellow) wins!'
+                    message: 'Player 2  wins!'
                 });
             } else if (gameresult === 'draw') {
                 this.setState({
@@ -81,7 +82,7 @@ class App extends React.Component {
             } else {
                 this.setState({
                     board: newboard,
-                    currentPlayer: this.togglePlayer()
+                    currentplayer: this.togglePlayer()
                 });
             }
         }
